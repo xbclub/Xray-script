@@ -1619,10 +1619,11 @@ function handler_geodata_cron() {
 # =============================================================================
 function handler_docker() {
     # 检查 docker 命令是否存在
-    if ! cmd_exists 'docker'; then
-        # 如果不存在，则调用 docker.sh 安装 Docker
-        exec_docker '--install'
-    fi
+    # if ! cmd_exists 'docker'; then
+    #     # 如果不存在，则调用 docker.sh 安装 Docker
+    #     exec_docker '--install'
+    # fi
+    :
 }
 
 # =============================================================================
@@ -1638,7 +1639,7 @@ function handler_docker() {
 # =============================================================================
 function handler_warp() {
     # 确保 Docker 已安装
-    handler_docker
+    # handler_docker
     # 从脚本配置中读取当前 WARP 状态
     local WARP_STATUS="$(echo "${SCRIPT_CONFIG}" | jq -r '.xray.warp')"
     # 从 Xray 配置文件加载配置
@@ -1679,7 +1680,7 @@ function handler_warp() {
 # =============================================================================
 function handler_reset_warp() {
     # 确保 Docker 已安装
-    handler_docker
+    # handler_docker
     # 从脚本配置中读取当前 WARP 状态
     local WARP_STATUS="$(echo "${SCRIPT_CONFIG}" | jq -r '.xray.warp')"
     # 从 Xray 配置文件加载配置
@@ -1995,7 +1996,7 @@ function handler_nginx_config() {
 # =============================================================================
 function handler_cloudreve_v3() {
     # 确保 Docker 已安装
-    handler_docker
+    # handler_docker
     # 根据传入的操作参数执行对应动作
     case "${1}" in
     install) exec_docker '--install-cloudreve-v3' ;;   # 安装 Cloudreve v3
@@ -2019,7 +2020,7 @@ function handler_cloudreve_v3() {
 # =============================================================================
 function handler_cloudreve_v4() {
     # 确保 Docker 已安装
-    handler_docker
+    # handler_docker
     # 根据传入的操作参数执行对应动作
     case "${1}" in
     install) exec_docker '--install-cloudreve-v4' ;; # 安装 Cloudreve v4

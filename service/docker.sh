@@ -215,29 +215,30 @@ function _os_ver() {
 # 返回值: 无 (执行安装过程，失败时会调用 print_error 退出)
 # =============================================================================
 function install_docker() {
-    # 打印开始安装的信息
-    print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.start')"
+    # 自动安装 Docker 逻辑已注释
+    # print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.start')"
 
-    # 下载 Docker 官方安装脚本到工具目录
-    wget -O "${TOOL_DIR}/install-docker.sh" https://get.docker.com
+    # # 下载 Docker 官方安装脚本到工具目录
+    # wget -O "${TOOL_DIR}/install-docker.sh" https://get.docker.com
 
-    # 检查是否为 CentOS 8 系统
-    if [[ "$(_os)" == "centos" && "$(_os_ver)" -eq 8 ]]; then
-        # 打印针对 CentOS 8 的修复信息
-        print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.centos8_fix')"
-        # 修改安装脚本，在安装命令中添加 --allowerasing 选项以解决依赖冲突
-        sed -i 's|$sh_c "$pkg_manager install -y -q $pkgs"| $sh_c "$pkg_manager install -y -q $pkgs --allowerasing"|' "${TOOL_DIR}/install-docker.sh"
-    fi
+    # # 检查是否为 CentOS 8 系统
+    # if [[ "$(_os)" == "centos" && "$(_os_ver)" -eq 8 ]]; then
+    #     # 打印针对 CentOS 8 的修复信息
+    #     print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.centos8_fix')"
+    #     # 修改安装脚本，在安装命令中添加 --allowerasing 选项以解决依赖冲突
+    #     sed -i 's|$sh_c "$pkg_manager install -y -q $pkgs"| $sh_c "$pkg_manager install -y -q $pkgs --allowerasing"|' "${TOOL_DIR}/install-docker.sh"
+    # fi
 
-    # 打印运行前检查的信息
-    print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.dry_run')"
-    # 执行安装脚本的 --dry-run 模式进行检查
-    sh "${TOOL_DIR}/install-docker.sh" --dry-run
+    # # 打印运行前检查的信息
+    # print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.dry_run')"
+    # # 执行安装脚本的 --dry-run 模式进行检查
+    # sh "${TOOL_DIR}/install-docker.sh" --dry-run
 
-    # 打印正式运行安装的信息
-    print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.running')"
-    # 执行安装脚本进行实际安装
-    sh "${TOOL_DIR}/install-docker.sh"
+    # # 打印正式运行安装的信息
+    # print_info "$(echo "$I18N_DATA" | jq -r '.docker.install.running')"
+    # # 执行安装脚本进行实际安装
+    # sh "${TOOL_DIR}/install-docker.sh"
+    :
 }
 
 # =============================================================================
